@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christian Bible Quiz - Provantage Global Solution</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Welcome Screen -->
+    <div id="welcomeScreen" class="screen active">
+        <div class="container">
+            <div class="logo-section">
+                <img src="20241018_123037.png" alt="Provantage Global Solution" class="logo">
+                <h1 class="company-name">Provantage Global Solution</h1>
+            </div>
+            
+            <div class="welcome-content">
+                <h2 class="app-title">
+                    <i class="fas fa-cross"></i>
+                    Christian Bible Quiz
+                    <i class="fas fa-cross"></i>
+                </h2>
+                <p class="app-subtitle">Test Your Biblical Knowledge</p>
+                
+                <div class="app-description">
+                    <h3>About This Quiz</h3>
+                    <p>Welcome to our comprehensive Christian Bible Quiz featuring 1000 carefully crafted questions covering the Old and New Testament. This interactive quiz is designed to test and enhance your biblical knowledge while providing an engaging learning experience.</p>
+                    
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-clock"></i>
+                            <h4>Timed Questions</h4>
+                            <p>7 seconds per question to keep you engaged</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-random"></i>
+                            <h4>Randomized</h4>
+                            <p>Different questions every time you play</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-trophy"></i>
+                            <h4>Score Tracking</h4>
+                            <p>Monitor your progress and improvement</p>
+                        </div>
+                        <div class="feature-card">
+                            <i class="fas fa-mobile-alt"></i>
+                            <h4>Responsive</h4>
+                            <p>Works perfectly on all devices</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="showInstructions" class="btn btn-primary">
+                    <i class="fas fa-info-circle"></i>
+                    View Instructions
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Instructions Screen -->
+    <div id="instructionsScreen" class="screen">
+        <div class="container">
+            <div class="instructions-content">
+                <h2>
+                    <i class="fas fa-list-check"></i>
+                    Quiz Instructions
+                </h2>
+                
+                <div class="instructions-list">
+                    <div class="instruction-item">
+                        <div class="instruction-number">1</div>
+                        <div class="instruction-text">
+                            <h4>Question Format</h4>
+                            <p>Each question has 4 multiple choice options (A, B, C, D). Select the best answer.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">2</div>
+                        <div class="instruction-text">
+                            <h4>Time Limit</h4>
+                            <p>You have exactly <strong>7 seconds</strong> to answer each question. If time runs out, the question is marked as incorrect and you'll automatically move to the next question.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">3</div>
+                        <div class="instruction-text">
+                            <h4>Scoring System</h4>
+                            <p>Correct answers earn 1 point. Incorrect or unanswered questions earn 0 points.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">4</div>
+                        <div class="instruction-text">
+                            <h4>Question Randomization</h4>
+                            <p>Questions are randomly selected and shuffled each time you start a new quiz session.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">5</div>
+                        <div class="instruction-text">
+                            <h4>Progress Tracking</h4>
+                            <p>Your progress is displayed at the top of the screen. You can see your current question number and score.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="instruction-item">
+                        <div class="instruction-number">6</div>
+                        <div class="instruction-text">
+                            <h4>Final Results</h4>
+                            <p>At the end of the quiz, you'll see your total score, percentage, and performance analysis.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="instruction-buttons">
+                    <button id="backToWelcome" class="btn btn-secondary">
+                        <i class="fas fa-arrow-left"></i>
+                        Back
+                    </button>
+                    <button id="startQuiz" class="btn btn-primary">
+                        <i class="fas fa-play"></i>
+                        Start Quiz
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quiz Screen -->
+    <div id="quizScreen" class="screen">
+        <div class="container">
+            <!-- Quiz Header -->
+            <div class="quiz-header">
+                <div class="quiz-progress">
+                    <div class="progress-info">
+                        <span id="currentQuestion">1</span> / <span id="totalQuestions">20</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="progressFill" class="progress-fill"></div>
+                    </div>
+                </div>
+                
+                <div class="quiz-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-trophy"></i>
+                        <span>Score: <span id="currentScore">0</span></span>
+                    </div>
+                    <div class="stat-item timer-container">
+                        <i class="fas fa-clock"></i>
+                        <span>Time: <span id="timer">7</span>s</span>
+                        <div class="timer-circle">
+                            <svg class="timer-svg" viewBox="0 0 36 36">
+                                <path class="timer-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                                <path id="timerProgress" class="timer-progress" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Content -->
+            <div class="question-container">
+                <div class="question-card">
+                    <h3 id="questionText" class="question-text">Loading question...</h3>
+                    
+                    <div class="options-container">
+                        <button class="option-btn" data-option="A">
+                            <span class="option-letter">A</span>
+                            <span class="option-text" id="optionA">Option A</span>
+                        </button>
+                        <button class="option-btn" data-option="B">
+                            <span class="option-letter">B</span>
+                            <span class="option-text" id="optionB">Option B</span>
+                        </button>
+                        <button class="option-btn" data-option="C">
+                            <span class="option-letter">C</span>
+                            <span class="option-text" id="optionC">Option C</span>
+                        </button>
+                        <button class="option-btn" data-option="D">
+                            <span class="option-letter">D</span>
+                            <span class="option-text" id="optionD">Option D</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Controls -->
+            <div class="quiz-controls">
+                <button id="quitQuiz" class="btn btn-danger">
+                    <i class="fas fa-times"></i>
+                    Quit Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Results Screen -->
+    <div id="resultsScreen" class="screen">
+        <div class="container">
+            <div class="results-content">
+                <div class="results-header">
+                    <i class="fas fa-flag-checkered"></i>
+                    <h2>Quiz Complete!</h2>
+                </div>
+                
+                <div class="results-stats">
+                    <div class="stat-card primary">
+                        <div class="stat-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="finalScore">0</h3>
+                            <p>Final Score</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="finalPercentage">0%</h3>
+                            <p>Accuracy</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="correctAnswers">0</h3>
+                            <p>Correct</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3 id="incorrectAnswers">0</h3>
+                            <p>Incorrect</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="performance-analysis">
+                    <h3>Performance Analysis</h3>
+                    <div id="performanceText" class="performance-text">
+                        Great job on completing the quiz!
+                    </div>
+                </div>
+                
+                <div class="results-actions">
+                    <button id="retakeQuiz" class="btn btn-primary">
+                        <i class="fas fa-redo"></i>
+                        Take Quiz Again
+                    </button>
+                    <button id="backToHome" class="btn btn-secondary">
+                        <i class="fas fa-home"></i>
+                        Back to Home
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
